@@ -1,0 +1,68 @@
+# ann_tokenization_
+    The Token class provides a comprehensive system for training ANNs and exchanging information among a network of scientists. It encompasses features such as evaluating data quality, tracking clients, checking for catastrophic loss, storing serialized models, and maintaining training data inputs. 
+  
+The Token class provides a comprehensive system for training ANNs and exchanging information among a network of scientists. It encompasses features such as evaluating data quality, tracking clients, checking for catastrophic loss, storing serialized models, and maintaining training data inputs. This system facilitates efficient and effective ANN training while promoting collaboration and knowledge sharing among scientists working with ANNs.
+  
+    quality_of_data: This attribute represents a measure of how well the training data for the artificial neural network (ANN) meets the desired size and diversity requirements. It provides an indication of the suitability of the data for training the ANN effectively.
+
+    keys: This attribute is a list that is used to keep track of the clients who use the system. It serves as a unique identifier for each client and helps in managing access and usage of the system.
+
+    catastrophic_loss: The catastrophic_loss attribute is used to determine which tensors or data samples are considered for training the ANN. It helps in identifying and analyzing potential losses or failures during the training process.
+
+    comments: This attribute is a list where users can add descriptions or comments related to updates, changes, or any relevant information about the system or the ANN training process. It provides a means to document and communicate important details.
+
+    weights: The weights attribute represents a compressed zip file containing trained models. It is used for serialization of the ANN, allowing users to store and exchange trained models efficiently.
+
+    tensors: This attribute holds the training data inputs for the ANN. It provides the necessary data samples on which the ANN is trained, enabling the system to learn and make predictions based on the given input data.
+
+
+
+The provided code contains an algorithm called Jaccard Distance Calculation, which is used to measure the diversity and quality of training data. It is implemented as part of the Token class.
+
+The algorithm consists of the following methods:
+
+    calculate_jaccard_distance(set1, set2): This method calculates the Jaccard distance between two sets, set1 and set2. It computes the intersection and union of the sets and then applies the Jaccard distance formula. The resulting value represents the dissimilarity between the sets.
+
+    calculate_sum_of_smallest_jaccard_distances(file_path): This method reads a file containing sets of values and calculates the sum of the smallest Jaccard distances among all pairs of sets. It uses the calculate_jaccard_distance method to determine the distance between each pair of sets. The smallest distances are accumulated, and the final sum is returned.
+
+    calculate_and_save_sum_of_smallest_jaccard_distances(self, file_path): This method combines the functionality of the previous methods. It calculates the sum of the smallest Jaccard distances using the calculate_sum_of_smallest_jaccard_distances method and saves the result in the quality_of_data attribute of the Token instance.
+
+To use the algorithm:
+
+    Create an instance of the Token class.
+    Call the calculate_and_save_sum_of_smallest_jaccard_distances method, passing the file path as an argument.
+    The method will calculate the sum of the smallest Jaccard distances based on the sets provided in the file and store the result in the quality_of_data attribute.
+
+
+The provided code implements an algorithm to calculate the mean vector from a matrix, which is used as a measure of catastrophic loss. The algorithm is part of the Token class.
+
+The algorithm consists of the following methods:
+
+    read_matrix_from_file(file_path): This method reads a file containing a matrix represented as rows of values. Each line in the file represents a row of the matrix, and the values are separated by commas. The method reads the file, parses the values, and returns the matrix as a list of lists.
+
+    mean_vector(mat): This method takes a matrix (mat) as input and calculates the mean vector. It iterates over each column of the matrix, accumulating the sum of values in each column. It then divides the sum by the number of rows to calculate the mean value for each column. The mean values are stored in a list, representing the mean vector.
+
+    calculate_and_print_mean_vector(self, file_path): This method combines the functionality of the previous methods. It reads the matrix from a file using the read_matrix_from_file method. Then, it calculates the mean vector using the mean_vector method and assigns the result to the catastrofic_loss attribute of the Token instance. Finally, it prints the mean vector.
+
+The algorithm is used to evaluate the mean vector of a given matrix, which represents the description of the training data. The mean vector serves as a measure of catastrophic loss, indicating how different the new training data is from the existing data. If the new data deviates significantly from the mean vector, it may lead to catastrophic forgetting, where the neural network forgets previously learned information. Thus, it is crucial to carefully introduce new training data to maintain the stability and performance of the neural network.
+
+To use the algorithm:
+
+    Create an instance of the Token class.
+    Call the calculate_and_print_mean_vector method, passing the file path as an argument.
+    The method will read the matrix from the file, calculate the mean vector, assign the result to the catastrofic_loss attribute, and print the mean vector.
+
+The provided code implements functionality to maintain a smart keyring for preventing unauthorized access to the system. The keyring consists of prime numbers, and the code ensures that the keyring contains a maximum of 10 keys at any given time. The code is part of a class, and the following methods are defined:
+
+    is_prime(self, number): This method checks if a given number is prime. It takes a number as input and performs a primality test to determine if the number is prime. It starts checking divisibility from 2 up to the square root of the number. If any divisor is found, the method returns False, indicating that the number is not prime. Otherwise, it returns True, indicating that the number is prime.
+
+    update_keys(self, new_prime): This method is responsible for updating the keys in the keyring. It takes a new prime number as input. First, it checks if the provided number is prime by calling the is_prime method. If the number is prime, it appends it to the keys list, which represents the keyring. Additionally, if the length of the keys list exceeds 10, the oldest key (the first element in the list) is removed to maintain the maximum of 10 keys. Finally, it prints the updated keys.
+
+The implementation of the keyring using prime numbers is a security measure to protect the system from unauthorized access. Prime numbers are computationally difficult to factorize, making it challenging for potential attackers to generate valid keys and gain access to the system. By verifying the primality of the new key before adding it to the keyring, the code ensures that only valid prime numbers are included, strengthening the security of the system.
+
+To use the code:
+
+    Create an instance of the class.
+    Call the update_keys method, passing a new prime number as an argument.
+    The method will check if the number is prime and add it to the keyring if it is valid. If the keyring exceeds 10 keys, the oldest key will be removed. The updated keys will be printed.
+
